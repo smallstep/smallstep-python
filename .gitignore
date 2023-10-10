@@ -1,0 +1,7 @@
+__pycache__/
+.env
+.venv
+*.py[cod]
+dist
+notes.md
+smallstep/openapi.json

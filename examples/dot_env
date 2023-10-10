@@ -1,0 +1,3 @@
+# Smallstep API (https://gateway.smallstep.com/api)
+SMALLSTEP_API_HOST = "https://gateway.smallstep.com/api"  # This is not needed if you are using our hosted SaaS as gateway.smallstep.com is the default
+SMALLSTEP_API_TOKEN = "<User's smallstep.com API token here>"
