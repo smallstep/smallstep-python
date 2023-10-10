@@ -10,6 +10,14 @@ We use [openapi-python-client](https://github.com/openapi-generators/openapi-pyt
 * [Smallstep Account](https://smallstep.com/signup)
 * A very strong desire to allow a cute snake to manage your Smallstep account
 
+## Installation
+
+We publish this package to <https://pypi.org/project/smallstep-python/> and it can be installed via pip.
+
+```bash
+pip install smallstep-python
+```
+
 ## Development
 
 ### Configuration
