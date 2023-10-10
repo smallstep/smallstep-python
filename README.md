@@ -1,4 +1,4 @@
-# smallstep-python: A Python library for interfacing with the Smallstep API
+# smallstep-python
 
 smallstep-python is a Python library at allows you to interface with the Smallstep API. We use [openapi-python-client](https://github.com/openapi-generators/openapi-python-client) to generate a low level Python client that is located in `smallstep/api_client/`. See the `smallstep/README.md` for more information on using this generated library. We built a wrapper library on top of `smallstep/api_client` that is located in `api.py`. This adds a handful of helper features. At this time `smallstep/api.py` only supports a few API endpoints. See `smallstep/api.py` for details.
 
