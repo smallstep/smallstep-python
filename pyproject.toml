@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "smallstep-python"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Python library at allows you to interface with the Smallstep API."
 repository = "https://github.com/smallstep/smallstep-python"
 authors = ["Smallstep Engineering <techadmin@smallstep.com>"]
@@ -11,6 +11,7 @@ packages = [{include = "smallstep"}]
 python = "^3.9"
 openapi-python-client = "0.15.2"
 pydantic-settings = "2.0.3"
+pyhumps = "^3.8.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
