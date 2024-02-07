@@ -10,7 +10,7 @@ packages = [{include = "smallstep"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 openapi-python-client = "0.15.2"
-pydantic-settings = "2.0.3"
+pydantic-settings = "2.1.0"
 pyhumps = "^3.8.0"
 
 [tool.poetry.group.dev.dependencies]
