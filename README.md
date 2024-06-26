@@ -11,6 +11,7 @@ We use [openapi-python-client](https://github.com/openapi-generators/openapi-pyt
 * A very strong desire to allow a cute snake to manage your Smallstep account
 
 <img src=/images/smallstep-snek.png alt="A cute snake to manage Smallstep" width=250>
+
 ## Installation
 
 We publish this package to <https://pypi.org/project/smallstep-python/> and it can be installed via pip.
