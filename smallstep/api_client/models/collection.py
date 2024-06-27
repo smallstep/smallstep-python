@@ -39,8 +39,11 @@ class Collection:
         created_at = self.created_at.isoformat()
 
         display_name = self.display_name
+
         instance_count = self.instance_count
+
         slug = self.slug
+
         updated_at = self.updated_at.isoformat()
 
         schema_uri = self.schema_uri

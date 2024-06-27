@@ -24,6 +24,7 @@ class JWKProvisioner:
 
     def to_dict(self) -> Dict[str, Any]:
         key = self.key
+
         encrypted_key = self.encrypted_key
 
         field_dict: Dict[str, Any] = {}

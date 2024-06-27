@@ -23,7 +23,9 @@ class AuthorityCSR:
 
     def to_dict(self) -> Dict[str, Any]:
         authority_id = self.authority_id
+
         csr = self.csr
+
         id = self.id
 
         field_dict: Dict[str, Any] = {}

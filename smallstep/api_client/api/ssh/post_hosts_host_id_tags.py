@@ -13,27 +13,29 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     host_id: str,
     *,
-    json_body: NewSSHHostTag,
+    body: NewSSHHostTag,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
-    headers = {}
+    headers: Dict[str, Any] = {}
     if not isinstance(x_request_id, Unset):
         headers["X-Request-Id"] = x_request_id
 
     if not isinstance(accept, Unset):
         headers["Accept"] = accept
 
-    json_json_body = json_body.to_dict()
-
-    return {
+    _kwargs: Dict[str, Any] = {
         "method": "post",
-        "url": "/hosts/{hostID}/tags".format(
-            hostID=host_id,
-        ),
-        "json": json_json_body,
-        "headers": headers,
+        "url": f"/hosts/{host_id}/tags",
     }
+
+    _body = body.to_dict()
+
+    _kwargs["json"] = _body
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
+    return _kwargs
 
 
 def _parse_response(
@@ -76,7 +78,7 @@ def sync_detailed(
     host_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: NewSSHHostTag,
+    body: NewSSHHostTag,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, SSHHostTag]]:
@@ -88,7 +90,7 @@ def sync_detailed(
         host_id (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (NewSSHHostTag): The body of a request to add a tag to a host.
+        body (NewSSHHostTag): The body of a request to add a tag to a host.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -100,7 +102,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         host_id=host_id,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -116,7 +118,7 @@ def sync(
     host_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: NewSSHHostTag,
+    body: NewSSHHostTag,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, SSHHostTag]]:
@@ -128,7 +130,7 @@ def sync(
         host_id (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (NewSSHHostTag): The body of a request to add a tag to a host.
+        body (NewSSHHostTag): The body of a request to add a tag to a host.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -141,7 +143,7 @@ def sync(
     return sync_detailed(
         host_id=host_id,
         client=client,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     ).parsed
@@ -151,7 +153,7 @@ async def asyncio_detailed(
     host_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: NewSSHHostTag,
+    body: NewSSHHostTag,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, SSHHostTag]]:
@@ -163,7 +165,7 @@ async def asyncio_detailed(
         host_id (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (NewSSHHostTag): The body of a request to add a tag to a host.
+        body (NewSSHHostTag): The body of a request to add a tag to a host.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -175,7 +177,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         host_id=host_id,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -189,7 +191,7 @@ async def asyncio(
     host_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: NewSSHHostTag,
+    body: NewSSHHostTag,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, SSHHostTag]]:
@@ -201,7 +203,7 @@ async def asyncio(
         host_id (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (NewSSHHostTag): The body of a request to add a tag to a host.
+        body (NewSSHHostTag): The body of a request to add a tag to a host.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -215,7 +217,7 @@ async def asyncio(
         await asyncio_detailed(
             host_id=host_id,
             client=client,
-            json_body=json_body,
+            body=body,
             x_request_id=x_request_id,
             accept=accept,
         )

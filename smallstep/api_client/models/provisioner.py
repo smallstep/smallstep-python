@@ -46,6 +46,7 @@ class Provisioner:
 
     def to_dict(self) -> Dict[str, Any]:
         name = self.name
+
         type = self.type.value
 
         claims: Union[Unset, Dict[str, Any]] = UNSET
@@ -57,6 +58,7 @@ class Provisioner:
             created_at = self.created_at.isoformat()
 
         id = self.id
+
         options: Union[Unset, Dict[str, Any]] = UNSET
         if not isinstance(self.options, Unset):
             options = self.options.to_dict()

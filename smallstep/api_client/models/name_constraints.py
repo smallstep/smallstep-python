@@ -10,7 +10,7 @@ T = TypeVar("T", bound="NameConstraints")
 
 @_attrs_define
 class NameConstraints:
-    """X509 certificate name constratins.
+    """X509 certificate name constraints.
 
     Attributes:
         critical (Union[Unset, bool]): Whether or not name constraints are marked critical.
@@ -37,6 +37,7 @@ class NameConstraints:
 
     def to_dict(self) -> Dict[str, Any]:
         critical = self.critical
+
         excluded_dns_domains: Union[Unset, List[str]] = UNSET
         if not isinstance(self.excluded_dns_domains, Unset):
             excluded_dns_domains = self.excluded_dns_domains

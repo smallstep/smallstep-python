@@ -16,22 +16,20 @@ def _get_kwargs(
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
-    headers = {}
+    headers: Dict[str, Any] = {}
     if not isinstance(x_request_id, Unset):
         headers["X-Request-Id"] = x_request_id
 
     if not isinstance(accept, Unset):
         headers["Accept"] = accept
 
-    return {
+    _kwargs: Dict[str, Any] = {
         "method": "delete",
-        "url": "/authorities/{authorityID}/provisioners/{provisionerNameOrID}/webhooks/{webhookNameOrID}".format(
-            authorityID=authority_id,
-            provisionerNameOrID=provisioner_name_or_id,
-            webhookNameOrID=webhook_name_or_id,
-        ),
-        "headers": headers,
+        "url": f"/authorities/{authority_id}/provisioners/{provisioner_name_or_id}/webhooks/{webhook_name_or_id}",
     }
+
+    _kwargs["headers"] = headers
+    return _kwargs
 
 
 def _parse_response(*, client: Union[AuthenticatedClient, Client], response: httpx.Response) -> Optional[Any]:
@@ -40,6 +38,8 @@ def _parse_response(*, client: Union[AuthenticatedClient, Client], response: htt
     if response.status_code == HTTPStatus.BAD_REQUEST:
         return None
     if response.status_code == HTTPStatus.UNAUTHORIZED:
+        return None
+    if response.status_code == HTTPStatus.UNPROCESSABLE_ENTITY:
         return None
     if response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR:
         return None

@@ -12,27 +12,29 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     collection_slug: str,
     *,
-    json_body: DeviceCollection,
+    body: DeviceCollection,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
-    headers = {}
+    headers: Dict[str, Any] = {}
     if not isinstance(x_request_id, Unset):
         headers["X-Request-Id"] = x_request_id
 
     if not isinstance(accept, Unset):
         headers["Accept"] = accept
 
-    json_json_body = json_body.to_dict()
-
-    return {
+    _kwargs: Dict[str, Any] = {
         "method": "put",
-        "url": "/device-collections/{collectionSlug}".format(
-            collectionSlug=collection_slug,
-        ),
-        "json": json_json_body,
-        "headers": headers,
+        "url": f"/device-collections/{collection_slug}",
     }
+
+    _body = body.to_dict()
+
+    _kwargs["json"] = _body
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
+    return _kwargs
 
 
 def _parse_response(
@@ -75,22 +77,24 @@ def sync_detailed(
     collection_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: DeviceCollection,
+    body: DeviceCollection,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, DeviceCollection]]:
     """Create Device Collection
 
-     Create a new device collection or update an existing device collection.
-    A device collection is a set of devices running the smallstep agent with the same configuration.
-    All resources required to run the smallstep agent on the devices will be created if they do not
-    already exist, including authorities, provisioners and webhooks.
+     Create or update a device collection.
+    A device collection is a set of devices that you will use with Smallstep.
+    You should group your devices by type (eg. AWS VMs, Azure VM, on-prem devices, mobile devices, etc.)
+    and by their need for similar workload configurations.
+    When you create your first device collection, Smallstep will create a few foundational components
+    (CAs, provisioners, and webhooks) for you.
 
     Args:
         collection_slug (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (DeviceCollection): Configuration to create a new device collection.
+        body (DeviceCollection): Configuration to create a new device collection.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -102,7 +106,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         collection_slug=collection_slug,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -118,22 +122,24 @@ def sync(
     collection_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: DeviceCollection,
+    body: DeviceCollection,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, DeviceCollection]]:
     """Create Device Collection
 
-     Create a new device collection or update an existing device collection.
-    A device collection is a set of devices running the smallstep agent with the same configuration.
-    All resources required to run the smallstep agent on the devices will be created if they do not
-    already exist, including authorities, provisioners and webhooks.
+     Create or update a device collection.
+    A device collection is a set of devices that you will use with Smallstep.
+    You should group your devices by type (eg. AWS VMs, Azure VM, on-prem devices, mobile devices, etc.)
+    and by their need for similar workload configurations.
+    When you create your first device collection, Smallstep will create a few foundational components
+    (CAs, provisioners, and webhooks) for you.
 
     Args:
         collection_slug (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (DeviceCollection): Configuration to create a new device collection.
+        body (DeviceCollection): Configuration to create a new device collection.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -146,7 +152,7 @@ def sync(
     return sync_detailed(
         collection_slug=collection_slug,
         client=client,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     ).parsed
@@ -156,22 +162,24 @@ async def asyncio_detailed(
     collection_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: DeviceCollection,
+    body: DeviceCollection,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, DeviceCollection]]:
     """Create Device Collection
 
-     Create a new device collection or update an existing device collection.
-    A device collection is a set of devices running the smallstep agent with the same configuration.
-    All resources required to run the smallstep agent on the devices will be created if they do not
-    already exist, including authorities, provisioners and webhooks.
+     Create or update a device collection.
+    A device collection is a set of devices that you will use with Smallstep.
+    You should group your devices by type (eg. AWS VMs, Azure VM, on-prem devices, mobile devices, etc.)
+    and by their need for similar workload configurations.
+    When you create your first device collection, Smallstep will create a few foundational components
+    (CAs, provisioners, and webhooks) for you.
 
     Args:
         collection_slug (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (DeviceCollection): Configuration to create a new device collection.
+        body (DeviceCollection): Configuration to create a new device collection.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -183,7 +191,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         collection_slug=collection_slug,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -197,22 +205,24 @@ async def asyncio(
     collection_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: DeviceCollection,
+    body: DeviceCollection,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, DeviceCollection]]:
     """Create Device Collection
 
-     Create a new device collection or update an existing device collection.
-    A device collection is a set of devices running the smallstep agent with the same configuration.
-    All resources required to run the smallstep agent on the devices will be created if they do not
-    already exist, including authorities, provisioners and webhooks.
+     Create or update a device collection.
+    A device collection is a set of devices that you will use with Smallstep.
+    You should group your devices by type (eg. AWS VMs, Azure VM, on-prem devices, mobile devices, etc.)
+    and by their need for similar workload configurations.
+    When you create your first device collection, Smallstep will create a few foundational components
+    (CAs, provisioners, and webhooks) for you.
 
     Args:
         collection_slug (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (DeviceCollection): Configuration to create a new device collection.
+        body (DeviceCollection): Configuration to create a new device collection.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -226,7 +236,7 @@ async def asyncio(
         await asyncio_detailed(
             collection_slug=collection_slug,
             client=client,
-            json_body=json_body,
+            body=body,
             x_request_id=x_request_id,
             accept=accept,
         )

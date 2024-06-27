@@ -26,6 +26,7 @@ class Email:
 
     def to_dict(self) -> Dict[str, Any]:
         email = self.email
+
         primary = self.primary
 
         field_dict: Dict[str, Any] = {}

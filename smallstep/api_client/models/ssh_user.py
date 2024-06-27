@@ -42,32 +42,34 @@ class SSHUser:
 
     def to_dict(self) -> Dict[str, Any]:
         active = self.active
+
         display_name = self.display_name
+
         emails: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.emails, Unset):
             emails = []
             for emails_item_data in self.emails:
                 emails_item = emails_item_data.to_dict()
-
                 emails.append(emails_item)
 
         family_name = self.family_name
+
         given_name = self.given_name
+
         groups: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.groups, Unset):
             groups = []
             for groups_item_data in self.groups:
                 groups_item = groups_item_data.to_dict()
-
                 groups.append(groups_item)
 
         id = self.id
+
         posix_users: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.posix_users, Unset):
             posix_users = []
             for posix_users_item_data in self.posix_users:
                 posix_users_item = posix_users_item_data.to_dict()
-
                 posix_users.append(posix_users_item)
 
         field_dict: Dict[str, Any] = {}

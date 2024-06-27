@@ -30,7 +30,9 @@ class AzureVMDeviceType:
         resource_groups = self.resource_groups
 
         tenant_id = self.tenant_id
+
         audience = self.audience
+
         disable_custom_sans = self.disable_custom_sans
 
         field_dict: Dict[str, Any] = {}

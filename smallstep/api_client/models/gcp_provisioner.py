@@ -38,8 +38,11 @@ class GCPProvisioner:
 
     def to_dict(self) -> Dict[str, Any]:
         disable_custom_sans = self.disable_custom_sans
+
         disable_trust_on_first_use = self.disable_trust_on_first_use
+
         instance_age = self.instance_age
+
         project_ids: Union[Unset, List[str]] = UNSET
         if not isinstance(self.project_ids, Unset):
             project_ids = self.project_ids

@@ -39,17 +39,17 @@ class SSHGroup:
             host_grants = []
             for host_grants_item_data in self.host_grants:
                 host_grants_item = host_grants_item_data.to_dict()
-
                 host_grants.append(host_grants_item)
 
         id = self.id
+
         name = self.name
+
         posix_groups: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.posix_groups, Unset):
             posix_groups = []
             for posix_groups_item_data in self.posix_groups:
                 posix_groups_item = posix_groups_item_data.to_dict()
-
                 posix_groups.append(posix_groups_item)
 
         principals: Union[Unset, List[str]] = UNSET

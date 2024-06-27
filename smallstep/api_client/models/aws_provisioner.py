@@ -36,7 +36,9 @@ class AWSProvisioner:
         accounts = self.accounts
 
         disable_custom_sans = self.disable_custom_sans
+
         disable_trust_on_first_use = self.disable_trust_on_first_use
+
         instance_age = self.instance_age
 
         field_dict: Dict[str, Any] = {}

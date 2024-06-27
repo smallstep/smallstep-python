@@ -13,28 +13,29 @@ def _get_kwargs(
     collection_slug: str,
     workload_slug: str,
     *,
-    json_body: Workload,
+    body: Workload,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
-    headers = {}
+    headers: Dict[str, Any] = {}
     if not isinstance(x_request_id, Unset):
         headers["X-Request-Id"] = x_request_id
 
     if not isinstance(accept, Unset):
         headers["Accept"] = accept
 
-    json_json_body = json_body.to_dict()
-
-    return {
+    _kwargs: Dict[str, Any] = {
         "method": "put",
-        "url": "/device-collections/{collectionSlug}/workloads/{workloadSlug}".format(
-            collectionSlug=collection_slug,
-            workloadSlug=workload_slug,
-        ),
-        "json": json_json_body,
-        "headers": headers,
+        "url": f"/device-collections/{collection_slug}/workloads/{workload_slug}",
     }
+
+    _body = body.to_dict()
+
+    _kwargs["json"] = _body
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
+    return _kwargs
 
 
 def _parse_response(
@@ -81,20 +82,24 @@ def sync_detailed(
     workload_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: Workload,
+    body: Workload,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, Workload]]:
-    """Create Workload
+    """Create or Update Workload
 
-     Add a workload to a device collection or update the workload if it already exists.
+     Create or update a workload in a device collection.
+    When you create a workload, you'll provide a workload type and Smallstep will configure sane
+    defaults for that type of workload.
+    When you create your first workload, Smallstep will create a few foundational components (CAs,
+    provisioners, and webhooks) for you.
 
     Args:
         collection_slug (str):
         workload_slug (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (Workload): A workload represents anything that uses a certificate.
+        body (Workload): A workload represents anything that uses a certificate.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -107,7 +112,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         collection_slug=collection_slug,
         workload_slug=workload_slug,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -115,6 +120,7 @@ def sync_detailed(
     response = client.get_httpx_client().request(
         **kwargs,
     )
+
     return _build_response(client=client, response=response)
 
 
@@ -123,20 +129,24 @@ def sync(
     workload_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: Workload,
+    body: Workload,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, Workload]]:
-    """Create Workload
+    """Create or Update Workload
 
-     Add a workload to a device collection or update the workload if it already exists.
+     Create or update a workload in a device collection.
+    When you create a workload, you'll provide a workload type and Smallstep will configure sane
+    defaults for that type of workload.
+    When you create your first workload, Smallstep will create a few foundational components (CAs,
+    provisioners, and webhooks) for you.
 
     Args:
         collection_slug (str):
         workload_slug (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (Workload): A workload represents anything that uses a certificate.
+        body (Workload): A workload represents anything that uses a certificate.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -150,7 +160,7 @@ def sync(
         collection_slug=collection_slug,
         workload_slug=workload_slug,
         client=client,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     ).parsed
@@ -161,20 +171,24 @@ async def asyncio_detailed(
     workload_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: Workload,
+    body: Workload,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, Workload]]:
-    """Create Workload
+    """Create or Update Workload
 
-     Add a workload to a device collection or update the workload if it already exists.
+     Create or update a workload in a device collection.
+    When you create a workload, you'll provide a workload type and Smallstep will configure sane
+    defaults for that type of workload.
+    When you create your first workload, Smallstep will create a few foundational components (CAs,
+    provisioners, and webhooks) for you.
 
     Args:
         collection_slug (str):
         workload_slug (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (Workload): A workload represents anything that uses a certificate.
+        body (Workload): A workload represents anything that uses a certificate.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -187,7 +201,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         collection_slug=collection_slug,
         workload_slug=workload_slug,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -202,20 +216,24 @@ async def asyncio(
     workload_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: Workload,
+    body: Workload,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, Workload]]:
-    """Create Workload
+    """Create or Update Workload
 
-     Add a workload to a device collection or update the workload if it already exists.
+     Create or update a workload in a device collection.
+    When you create a workload, you'll provide a workload type and Smallstep will configure sane
+    defaults for that type of workload.
+    When you create your first workload, Smallstep will create a few foundational components (CAs,
+    provisioners, and webhooks) for you.
 
     Args:
         collection_slug (str):
         workload_slug (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (Workload): A workload represents anything that uses a certificate.
+        body (Workload): A workload represents anything that uses a certificate.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -230,7 +248,7 @@ async def asyncio(
             collection_slug=collection_slug,
             workload_slug=workload_slug,
             client=client,
-            json_body=json_body,
+            body=body,
             x_request_id=x_request_id,
             accept=accept,
         )

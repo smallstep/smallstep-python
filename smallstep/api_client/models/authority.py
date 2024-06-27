@@ -42,16 +42,21 @@ class Authority:
         created_at = self.created_at.isoformat()
 
         domain = self.domain
+
         id = self.id
+
         name = self.name
+
         type = self.type.value
 
         active_revocation = self.active_revocation
+
         admin_emails: Union[Unset, List[str]] = UNSET
         if not isinstance(self.admin_emails, Unset):
             admin_emails = self.admin_emails
 
         fingerprint = self.fingerprint
+
         root = self.root
 
         field_dict: Dict[str, Any] = {}

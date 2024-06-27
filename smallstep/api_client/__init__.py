@@ -1,4 +1,5 @@
-""" A client library for accessing Smallstep API """
+"""A client library for accessing Smallstep API"""
+
 from .client import AuthenticatedClient, Client
 
 __all__ = (

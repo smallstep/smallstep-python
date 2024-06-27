@@ -33,7 +33,9 @@ class NewAuthorityCSR:
         intermediate_issuer = self.intermediate_issuer.to_dict()
 
         name = self.name
+
         subdomain = self.subdomain
+
         active_revocation = self.active_revocation
 
         field_dict: Dict[str, Any] = {}

@@ -24,7 +24,7 @@ class X509Issuer:
         duration (Union[Unset, str]): The certificate lifetime. Parsed as a [Golang
             duration](https://pkg.go.dev/time#ParseDuration).
         max_path_length (Union[Unset, int]):
-        name_constraints (Union[Unset, NameConstraints]): X509 certificate name constratins.
+        name_constraints (Union[Unset, NameConstraints]): X509 certificate name constraints.
         subject (Union[Unset, DistinguishedName]): Name used in x509 certificates
              Example: [{'organization': 'admins'}].
     """
@@ -41,8 +41,11 @@ class X509Issuer:
         key_version = self.key_version.value
 
         name = self.name
+
         duration = self.duration
+
         max_path_length = self.max_path_length
+
         name_constraints: Union[Unset, Dict[str, Any]] = UNSET
         if not isinstance(self.name_constraints, Unset):
             name_constraints = self.name_constraints.to_dict()

@@ -12,27 +12,29 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     collection_slug: str,
     *,
-    json_body: Collection,
+    body: Collection,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
-    headers = {}
+    headers: Dict[str, Any] = {}
     if not isinstance(x_request_id, Unset):
         headers["X-Request-Id"] = x_request_id
 
     if not isinstance(accept, Unset):
         headers["Accept"] = accept
 
-    json_json_body = json_body.to_dict()
-
-    return {
+    _kwargs: Dict[str, Any] = {
         "method": "put",
-        "url": "/collections/{collectionSlug}".format(
-            collectionSlug=collection_slug,
-        ),
-        "json": json_json_body,
-        "headers": headers,
+        "url": f"/collections/{collection_slug}",
     }
+
+    _body = body.to_dict()
+
+    _kwargs["json"] = _body
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
+    return _kwargs
 
 
 def _parse_response(
@@ -78,7 +80,7 @@ def sync_detailed(
     collection_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: Collection,
+    body: Collection,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, Collection]]:
@@ -90,7 +92,7 @@ def sync_detailed(
         collection_slug (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (Collection): A collection of instances. Example: {'createdAt':
+        body (Collection): A collection of instances. Example: {'createdAt':
             '2023-03-12T02:30:53.708Z', 'displayName': 'Employee Laptops', 'instanceCount': 23,
             'slug': 'devices', 'updatedAt': '2023-03-22T02:30:53.708Z'}.
 
@@ -104,7 +106,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         collection_slug=collection_slug,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -120,7 +122,7 @@ def sync(
     collection_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: Collection,
+    body: Collection,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, Collection]]:
@@ -132,7 +134,7 @@ def sync(
         collection_slug (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (Collection): A collection of instances. Example: {'createdAt':
+        body (Collection): A collection of instances. Example: {'createdAt':
             '2023-03-12T02:30:53.708Z', 'displayName': 'Employee Laptops', 'instanceCount': 23,
             'slug': 'devices', 'updatedAt': '2023-03-22T02:30:53.708Z'}.
 
@@ -147,7 +149,7 @@ def sync(
     return sync_detailed(
         collection_slug=collection_slug,
         client=client,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     ).parsed
@@ -157,7 +159,7 @@ async def asyncio_detailed(
     collection_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: Collection,
+    body: Collection,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, Collection]]:
@@ -169,7 +171,7 @@ async def asyncio_detailed(
         collection_slug (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (Collection): A collection of instances. Example: {'createdAt':
+        body (Collection): A collection of instances. Example: {'createdAt':
             '2023-03-12T02:30:53.708Z', 'displayName': 'Employee Laptops', 'instanceCount': 23,
             'slug': 'devices', 'updatedAt': '2023-03-22T02:30:53.708Z'}.
 
@@ -183,7 +185,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         collection_slug=collection_slug,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -197,7 +199,7 @@ async def asyncio(
     collection_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: Collection,
+    body: Collection,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, Collection]]:
@@ -209,7 +211,7 @@ async def asyncio(
         collection_slug (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (Collection): A collection of instances. Example: {'createdAt':
+        body (Collection): A collection of instances. Example: {'createdAt':
             '2023-03-12T02:30:53.708Z', 'displayName': 'Employee Laptops', 'instanceCount': 23,
             'slug': 'devices', 'updatedAt': '2023-03-22T02:30:53.708Z'}.
 
@@ -225,7 +227,7 @@ async def asyncio(
         await asyncio_detailed(
             collection_slug=collection_slug,
             client=client,
-            json_body=json_body,
+            body=body,
             x_request_id=x_request_id,
             accept=accept,
         )

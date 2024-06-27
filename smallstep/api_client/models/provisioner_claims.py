@@ -59,16 +59,27 @@ class ProvisionerClaims:
 
     def to_dict(self) -> Dict[str, Any]:
         allow_renewal_after_expiry = self.allow_renewal_after_expiry
+
         default_host_ssh_cert_duration = self.default_host_ssh_cert_duration
+
         default_tls_cert_duration = self.default_tls_cert_duration
+
         default_user_ssh_cert_duration = self.default_user_ssh_cert_duration
+
         disable_renewal = self.disable_renewal
+
         enable_sshca = self.enable_sshca
+
         max_host_ssh_cert_duration = self.max_host_ssh_cert_duration
+
         max_tls_cert_duration = self.max_tls_cert_duration
+
         max_user_ssh_cert_duration = self.max_user_ssh_cert_duration
+
         min_host_ssh_cert_duration = self.min_host_ssh_cert_duration
+
         min_tls_cert_duration = self.min_tls_cert_duration
+
         min_user_ssh_cert_duration = self.min_user_ssh_cert_duration
 
         field_dict: Dict[str, Any] = {}

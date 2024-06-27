@@ -47,14 +47,19 @@ class AttestationAuthority:
 
     def to_dict(self) -> Dict[str, Any]:
         attestor_roots = self.attestor_roots
+
         name = self.name
+
         attestor_intermediates = self.attestor_intermediates
+
         created_at: Union[Unset, str] = UNSET
         if not isinstance(self.created_at, Unset):
             created_at = self.created_at.isoformat()
 
         id = self.id
+
         root = self.root
+
         slug = self.slug
 
         field_dict: Dict[str, Any] = {}
