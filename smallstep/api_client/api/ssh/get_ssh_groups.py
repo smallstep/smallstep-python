@@ -5,18 +5,18 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.get_ssh_groups_pagination import GetSshGroupsPagination
+from ...models.get_ssh_groups_pagination_type_0 import GetSshGroupsPaginationType0
 from ...models.ssh_group import SSHGroup
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
-    pagination: Union[Unset, None, "GetSshGroupsPagination"] = UNSET,
+    pagination: Union["GetSshGroupsPaginationType0", None, Unset] = UNSET,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
-    headers = {}
+    headers: Dict[str, Any] = {}
     if not isinstance(x_request_id, Unset):
         headers["X-Request-Id"] = x_request_id
 
@@ -24,21 +24,26 @@ def _get_kwargs(
         headers["Accept"] = accept
 
     params: Dict[str, Any] = {}
-    json_pagination: Union[Unset, None, Dict[str, Any]] = UNSET
-    if not isinstance(pagination, Unset):
-        json_pagination = pagination.to_dict() if pagination else None
 
-    if not isinstance(json_pagination, Unset) and json_pagination is not None:
-        params.update(json_pagination)
+    json_pagination: Union[Dict[str, Any], None, Unset]
+    if isinstance(pagination, Unset):
+        json_pagination = UNSET
+    elif isinstance(pagination, GetSshGroupsPaginationType0):
+        json_pagination = pagination.to_dict()
+    else:
+        json_pagination = pagination
+    params["pagination"] = json_pagination
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
-    return {
+    _kwargs: Dict[str, Any] = {
         "method": "get",
         "url": "/groups",
         "params": params,
-        "headers": headers,
     }
+
+    _kwargs["headers"] = headers
+    return _kwargs
 
 
 def _parse_response(
@@ -82,7 +87,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    pagination: Union[Unset, None, "GetSshGroupsPagination"] = UNSET,
+    pagination: Union["GetSshGroupsPaginationType0", None, Unset] = UNSET,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, List["SSHGroup"]]]:
@@ -93,7 +98,7 @@ def sync_detailed(
     default directory managed by Smallstep.
 
     Args:
-        pagination (Union[Unset, None, GetSshGroupsPagination]):
+        pagination (Union['GetSshGroupsPaginationType0', None, Unset]):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
 
@@ -121,7 +126,7 @@ def sync_detailed(
 def sync(
     *,
     client: Union[AuthenticatedClient, Client],
-    pagination: Union[Unset, None, "GetSshGroupsPagination"] = UNSET,
+    pagination: Union["GetSshGroupsPaginationType0", None, Unset] = UNSET,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, List["SSHGroup"]]]:
@@ -132,7 +137,7 @@ def sync(
     default directory managed by Smallstep.
 
     Args:
-        pagination (Union[Unset, None, GetSshGroupsPagination]):
+        pagination (Union['GetSshGroupsPaginationType0', None, Unset]):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
 
@@ -155,7 +160,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    pagination: Union[Unset, None, "GetSshGroupsPagination"] = UNSET,
+    pagination: Union["GetSshGroupsPaginationType0", None, Unset] = UNSET,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, List["SSHGroup"]]]:
@@ -166,7 +171,7 @@ async def asyncio_detailed(
     default directory managed by Smallstep.
 
     Args:
-        pagination (Union[Unset, None, GetSshGroupsPagination]):
+        pagination (Union['GetSshGroupsPaginationType0', None, Unset]):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
 
@@ -192,7 +197,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
-    pagination: Union[Unset, None, "GetSshGroupsPagination"] = UNSET,
+    pagination: Union["GetSshGroupsPaginationType0", None, Unset] = UNSET,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, List["SSHGroup"]]]:
@@ -203,7 +208,7 @@ async def asyncio(
     default directory managed by Smallstep.
 
     Args:
-        pagination (Union[Unset, None, GetSshGroupsPagination]):
+        pagination (Union['GetSshGroupsPaginationType0', None, Unset]):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
 

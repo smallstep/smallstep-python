@@ -36,8 +36,11 @@ class AzureProvisioner:
         resource_groups = self.resource_groups
 
         tenant_id = self.tenant_id
+
         audience = self.audience
+
         disable_custom_sans = self.disable_custom_sans
+
         disable_trust_on_first_use = self.disable_trust_on_first_use
 
         field_dict: Dict[str, Any] = {}

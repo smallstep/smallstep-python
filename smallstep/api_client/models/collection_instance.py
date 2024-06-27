@@ -29,7 +29,9 @@ class CollectionInstance:
         created_at = self.created_at.isoformat()
 
         data = self.data
+
         id = self.id
+
         updated_at = self.updated_at.isoformat()
 
         field_dict: Dict[str, Any] = {}

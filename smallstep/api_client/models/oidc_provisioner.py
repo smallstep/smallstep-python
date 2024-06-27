@@ -42,8 +42,11 @@ class OIDCProvisioner:
 
     def to_dict(self) -> Dict[str, Any]:
         client_id = self.client_id
+
         client_secret = self.client_secret
+
         configuration_endpoint = self.configuration_endpoint
+
         admins: Union[Unset, List[str]] = UNSET
         if not isinstance(self.admins, Unset):
             admins = self.admins
@@ -57,6 +60,7 @@ class OIDCProvisioner:
             groups = self.groups
 
         listen_address = self.listen_address
+
         tenant_id = self.tenant_id
 
         field_dict: Dict[str, Any] = {}

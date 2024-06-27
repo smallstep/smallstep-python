@@ -28,7 +28,9 @@ class NewCollection:
 
     def to_dict(self) -> Dict[str, Any]:
         slug = self.slug
+
         display_name = self.display_name
+
         schema_uri = self.schema_uri
 
         field_dict: Dict[str, Any] = {}

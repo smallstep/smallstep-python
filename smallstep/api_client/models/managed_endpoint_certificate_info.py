@@ -43,11 +43,17 @@ class ManagedEndpointCertificateInfo:
         type = self.type.value
 
         crt_file = self.crt_file
+
         duration = self.duration
+
         gid = self.gid
+
         key_file = self.key_file
+
         mode = self.mode
+
         root_file = self.root_file
+
         uid = self.uid
 
         field_dict: Dict[str, Any] = {}

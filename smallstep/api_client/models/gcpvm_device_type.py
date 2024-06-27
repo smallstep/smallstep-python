@@ -30,6 +30,7 @@ class GCPVMDeviceType:
 
     def to_dict(self) -> Dict[str, Any]:
         disable_custom_sans = self.disable_custom_sans
+
         project_ids: Union[Unset, List[str]] = UNSET
         if not isinstance(self.project_ids, Unset):
             project_ids = self.project_ids

@@ -4,6 +4,7 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.managed_endpoint_key_info_format import ManagedEndpointKeyInfoFormat
+from ..models.managed_endpoint_key_info_protection import ManagedEndpointKeyInfoProtection
 from ..models.managed_endpoint_key_info_type import ManagedEndpointKeyInfoType
 from ..types import UNSET, Unset
 
@@ -15,17 +16,23 @@ class ManagedEndpointKeyInfo:
     """The attributes of the cryptographic key.
 
     Example:
-        {'format': 'DER', 'pubFile': '/etc/db.csr', 'type': 'ECDSA_P256'}
+        {'format': 'PKCS8', 'protection': 'NONE', 'pubFile': '/etc/db.csr', 'type': 'ECDSA_P256'}
 
     Attributes:
         format_ (Union[Unset, ManagedEndpointKeyInfoFormat]): The format used to encode the private key. For X509 keys
-            the default format is SEC 1 for ECDSA keys, PKCS#1 for RSA keys and PKCS#8 for ED25519 keys. For SSH keys the
-            default format is always the OPENSSH format.
+            the default format is PKCS#8. The classic format is PKCS#1 for RSA keys, SEC 1 for ECDSA keys, and PKCS#8 for
+            ED25519 keys. For SSH keys the default format is always the OPENSSH format. When a hardware module is used to
+            store the keys the default will be a JSON representation of the key, except on Linux where tss2 will be used.
+        protection (Union[Unset, ManagedEndpointKeyInfoProtection]): Whether to use a hardware module to store the
+            private key for a workload certificate. If set to `NONE` no hardware module will be used. If set to `DEFAULT` a
+            hardware module will only be used with format `TSS2`. `HARDWARE_WITH_FALLBACK` can only be used with the key
+            format `DEFAULT`.
         pub_file (Union[Unset, str]): A CSR or SSH public key to use instead of generating one.
         type (Union[Unset, ManagedEndpointKeyInfoType]): The key type used. The current DEFAULT type is ECDSA_P256.
     """
 
     format_: Union[Unset, ManagedEndpointKeyInfoFormat] = UNSET
+    protection: Union[Unset, ManagedEndpointKeyInfoProtection] = UNSET
     pub_file: Union[Unset, str] = UNSET
     type: Union[Unset, ManagedEndpointKeyInfoType] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -35,7 +42,12 @@ class ManagedEndpointKeyInfo:
         if not isinstance(self.format_, Unset):
             format_ = self.format_.value
 
+        protection: Union[Unset, str] = UNSET
+        if not isinstance(self.protection, Unset):
+            protection = self.protection.value
+
         pub_file = self.pub_file
+
         type: Union[Unset, str] = UNSET
         if not isinstance(self.type, Unset):
             type = self.type.value
@@ -45,6 +57,8 @@ class ManagedEndpointKeyInfo:
         field_dict.update({})
         if format_ is not UNSET:
             field_dict["format"] = format_
+        if protection is not UNSET:
+            field_dict["protection"] = protection
         if pub_file is not UNSET:
             field_dict["pubFile"] = pub_file
         if type is not UNSET:
@@ -62,6 +76,13 @@ class ManagedEndpointKeyInfo:
         else:
             format_ = ManagedEndpointKeyInfoFormat(_format_)
 
+        _protection = d.pop("protection", UNSET)
+        protection: Union[Unset, ManagedEndpointKeyInfoProtection]
+        if isinstance(_protection, Unset):
+            protection = UNSET
+        else:
+            protection = ManagedEndpointKeyInfoProtection(_protection)
+
         pub_file = d.pop("pubFile", UNSET)
 
         _type = d.pop("type", UNSET)
@@ -73,6 +94,7 @@ class ManagedEndpointKeyInfo:
 
         managed_endpoint_key_info = cls(
             format_=format_,
+            protection=protection,
             pub_file=pub_file,
             type=type,
         )

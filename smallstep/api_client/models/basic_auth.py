@@ -26,6 +26,7 @@ class BasicAuth:
 
     def to_dict(self) -> Dict[str, Any]:
         password = self.password
+
         username = self.username
 
         field_dict: Dict[str, Any] = {}

@@ -11,11 +11,11 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     collection_slug: str,
     *,
-    purge: Union[Unset, None, bool] = UNSET,
+    purge: Union[Unset, bool] = UNSET,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
-    headers = {}
+    headers: Dict[str, Any] = {}
     if not isinstance(x_request_id, Unset):
         headers["X-Request-Id"] = x_request_id
 
@@ -23,18 +23,19 @@ def _get_kwargs(
         headers["Accept"] = accept
 
     params: Dict[str, Any] = {}
+
     params["purge"] = purge
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
-    return {
+    _kwargs: Dict[str, Any] = {
         "method": "delete",
-        "url": "/device-collections/{collectionSlug}".format(
-            collectionSlug=collection_slug,
-        ),
+        "url": f"/device-collections/{collection_slug}",
         "params": params,
-        "headers": headers,
     }
+
+    _kwargs["headers"] = headers
+    return _kwargs
 
 
 def _parse_response(*, client: Union[AuthenticatedClient, Client], response: httpx.Response) -> Optional[Any]:
@@ -67,7 +68,7 @@ def sync_detailed(
     collection_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    purge: Union[Unset, None, bool] = UNSET,
+    purge: Union[Unset, bool] = UNSET,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Any]:
@@ -77,7 +78,7 @@ def sync_detailed(
 
     Args:
         collection_slug (str):
-        purge (Union[Unset, None, bool]):
+        purge (Union[Unset, bool]):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
 
@@ -107,7 +108,7 @@ async def asyncio_detailed(
     collection_slug: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    purge: Union[Unset, None, bool] = UNSET,
+    purge: Union[Unset, bool] = UNSET,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Any]:
@@ -117,7 +118,7 @@ async def asyncio_detailed(
 
     Args:
         collection_slug (str):
-        purge (Union[Unset, None, bool]):
+        purge (Union[Unset, bool]):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
 

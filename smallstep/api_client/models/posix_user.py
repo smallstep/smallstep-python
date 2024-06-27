@@ -30,9 +30,13 @@ class POSIXUser:
 
     def to_dict(self) -> Dict[str, Any]:
         gid = self.gid
+
         home_dir = self.home_dir
+
         shell = self.shell
+
         uid = self.uid
+
         username = self.username
 
         field_dict: Dict[str, Any] = {}

@@ -45,21 +45,19 @@ class DeviceCollection:
         device_type = self.device_type.value
 
         device_type_configuration: Dict[str, Any]
-
         if isinstance(self.device_type_configuration, AWSVMDeviceType):
             device_type_configuration = self.device_type_configuration.to_dict()
-
         elif isinstance(self.device_type_configuration, AzureVMDeviceType):
             device_type_configuration = self.device_type_configuration.to_dict()
-
         elif isinstance(self.device_type_configuration, GCPVMDeviceType):
             device_type_configuration = self.device_type_configuration.to_dict()
-
         else:
             device_type_configuration = self.device_type_configuration.to_dict()
 
         display_name = self.display_name
+
         slug = self.slug
+
         admin_emails: Union[Unset, List[str]] = UNSET
         if not isinstance(self.admin_emails, Unset):
             admin_emails = self.admin_emails

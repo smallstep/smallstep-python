@@ -32,8 +32,11 @@ class POSIXGroup:
 
     def to_dict(self) -> Dict[str, Any]:
         gid = self.gid
+
         id = self.id
+
         managed = self.managed
+
         name = self.name
 
         field_dict: Dict[str, Any] = {}

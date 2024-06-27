@@ -31,10 +31,10 @@ class ACMEProvisioner:
         challenges = []
         for challenges_item_data in self.challenges:
             challenges_item = challenges_item_data.value
-
             challenges.append(challenges_item)
 
         require_eab = self.require_eab
+
         force_cn = self.force_cn
 
         field_dict: Dict[str, Any] = {}

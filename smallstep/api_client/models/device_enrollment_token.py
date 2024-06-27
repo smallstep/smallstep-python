@@ -30,7 +30,9 @@ class DeviceEnrollmentToken:
 
     def to_dict(self) -> Dict[str, Any]:
         id = self.id
+
         secret = self.secret
+
         title = self.title
 
         field_dict: Dict[str, Any] = {}
