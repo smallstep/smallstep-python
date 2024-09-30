@@ -40,10 +40,13 @@ class NewHostedAuthority:
         admin_emails = self.admin_emails
 
         name = self.name
+
         subdomain = self.subdomain
+
         type = self.type.value
 
         active_revocation = self.active_revocation
+
         intermediate_issuer: Union[Unset, Dict[str, Any]] = UNSET
         if not isinstance(self.intermediate_issuer, Unset):
             intermediate_issuer = self.intermediate_issuer.to_dict()

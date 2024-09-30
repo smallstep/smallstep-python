@@ -42,7 +42,6 @@ class ACMEDeviceAttestationProvisioner:
         attestation_formats = []
         for attestation_formats_item_data in self.attestation_formats:
             attestation_formats_item = attestation_formats_item_data.value
-
             attestation_formats.append(attestation_formats_item)
 
         attestation_roots: Union[Unset, List[str]] = UNSET
@@ -50,6 +49,7 @@ class ACMEDeviceAttestationProvisioner:
             attestation_roots = self.attestation_roots
 
         force_cn = self.force_cn
+
         require_eab = self.require_eab
 
         field_dict: Dict[str, Any] = {}

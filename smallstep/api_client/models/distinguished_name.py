@@ -42,14 +42,23 @@ class DistinguishedName:
 
     def to_dict(self) -> Dict[str, Any]:
         common_name = self.common_name
+
         country = self.country
+
         email_address = self.email_address
+
         locality = self.locality
+
         organization = self.organization
+
         organizational_unit = self.organizational_unit
+
         postal_code = self.postal_code
+
         province = self.province
+
         serial_number = self.serial_number
+
         street_address = self.street_address
 
         field_dict: Dict[str, Any] = {}

@@ -13,28 +13,29 @@ def _get_kwargs(
     authority_id: str,
     provisioner_name_or_id: str,
     *,
-    json_body: ProvisionerWebhook,
+    body: ProvisionerWebhook,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
-    headers = {}
+    headers: Dict[str, Any] = {}
     if not isinstance(x_request_id, Unset):
         headers["X-Request-Id"] = x_request_id
 
     if not isinstance(accept, Unset):
         headers["Accept"] = accept
 
-    json_json_body = json_body.to_dict()
-
-    return {
+    _kwargs: Dict[str, Any] = {
         "method": "post",
-        "url": "/authorities/{authorityID}/provisioners/{provisionerNameOrID}/webhooks".format(
-            authorityID=authority_id,
-            provisionerNameOrID=provisioner_name_or_id,
-        ),
-        "json": json_json_body,
-        "headers": headers,
+        "url": f"/authorities/{authority_id}/provisioners/{provisioner_name_or_id}/webhooks",
     }
+
+    _body = body.to_dict()
+
+    _kwargs["json"] = _body
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
+    return _kwargs
 
 
 def _parse_response(
@@ -59,6 +60,9 @@ def _parse_response(
     if response.status_code == HTTPStatus.PRECONDITION_FAILED:
         response_412 = cast(Any, None)
         return response_412
+    if response.status_code == HTTPStatus.UNPROCESSABLE_ENTITY:
+        response_422 = cast(Any, None)
+        return response_422
     if response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR:
         response_500 = cast(Any, None)
         return response_500
@@ -84,7 +88,7 @@ def sync_detailed(
     provisioner_name_or_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: ProvisionerWebhook,
+    body: ProvisionerWebhook,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, ProvisionerWebhook]]:
@@ -97,8 +101,8 @@ def sync_detailed(
         provisioner_name_or_id (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (ProvisionerWebhook): A [webhook](https://smallstep.com/docs/step-ca/webhooks/)
-            to call when a certificate request is being processed.
+        body (ProvisionerWebhook): A [webhook](https://smallstep.com/docs/step-ca/webhooks/) to
+            call when a certificate request is being processed.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -111,7 +115,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         authority_id=authority_id,
         provisioner_name_or_id=provisioner_name_or_id,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -128,7 +132,7 @@ def sync(
     provisioner_name_or_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: ProvisionerWebhook,
+    body: ProvisionerWebhook,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, ProvisionerWebhook]]:
@@ -141,8 +145,8 @@ def sync(
         provisioner_name_or_id (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (ProvisionerWebhook): A [webhook](https://smallstep.com/docs/step-ca/webhooks/)
-            to call when a certificate request is being processed.
+        body (ProvisionerWebhook): A [webhook](https://smallstep.com/docs/step-ca/webhooks/) to
+            call when a certificate request is being processed.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -156,7 +160,7 @@ def sync(
         authority_id=authority_id,
         provisioner_name_or_id=provisioner_name_or_id,
         client=client,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     ).parsed
@@ -167,7 +171,7 @@ async def asyncio_detailed(
     provisioner_name_or_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: ProvisionerWebhook,
+    body: ProvisionerWebhook,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, ProvisionerWebhook]]:
@@ -180,8 +184,8 @@ async def asyncio_detailed(
         provisioner_name_or_id (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (ProvisionerWebhook): A [webhook](https://smallstep.com/docs/step-ca/webhooks/)
-            to call when a certificate request is being processed.
+        body (ProvisionerWebhook): A [webhook](https://smallstep.com/docs/step-ca/webhooks/) to
+            call when a certificate request is being processed.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -194,7 +198,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         authority_id=authority_id,
         provisioner_name_or_id=provisioner_name_or_id,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -209,7 +213,7 @@ async def asyncio(
     provisioner_name_or_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: ProvisionerWebhook,
+    body: ProvisionerWebhook,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, ProvisionerWebhook]]:
@@ -222,8 +226,8 @@ async def asyncio(
         provisioner_name_or_id (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (ProvisionerWebhook): A [webhook](https://smallstep.com/docs/step-ca/webhooks/)
-            to call when a certificate request is being processed.
+        body (ProvisionerWebhook): A [webhook](https://smallstep.com/docs/step-ca/webhooks/) to
+            call when a certificate request is being processed.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -238,7 +242,7 @@ async def asyncio(
             authority_id=authority_id,
             provisioner_name_or_id=provisioner_name_or_id,
             client=client,
-            json_body=json_body,
+            body=body,
             x_request_id=x_request_id,
             accept=accept,
         )

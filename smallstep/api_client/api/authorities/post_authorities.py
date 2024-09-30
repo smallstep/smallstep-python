@@ -12,25 +12,29 @@ from ...types import UNSET, Response, Unset
 
 def _get_kwargs(
     *,
-    json_body: NewHostedAuthority,
+    body: NewHostedAuthority,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
-    headers = {}
+    headers: Dict[str, Any] = {}
     if not isinstance(x_request_id, Unset):
         headers["X-Request-Id"] = x_request_id
 
     if not isinstance(accept, Unset):
         headers["Accept"] = accept
 
-    json_json_body = json_body.to_dict()
-
-    return {
+    _kwargs: Dict[str, Any] = {
         "method": "post",
         "url": "/authorities",
-        "json": json_json_body,
-        "headers": headers,
     }
+
+    _body = body.to_dict()
+
+    _kwargs["json"] = _body
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
+    return _kwargs
 
 
 def _parse_response(
@@ -52,6 +56,9 @@ def _parse_response(
     if response.status_code == HTTPStatus.PRECONDITION_FAILED:
         response_412 = cast(Any, None)
         return response_412
+    if response.status_code == HTTPStatus.UNPROCESSABLE_ENTITY:
+        response_422 = cast(Any, None)
+        return response_422
     if response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR:
         response_500 = cast(Any, None)
         return response_500
@@ -75,7 +82,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: NewHostedAuthority,
+    body: NewHostedAuthority,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, Authority]]:
@@ -86,7 +93,7 @@ def sync_detailed(
     Args:
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (NewHostedAuthority): The body of a request to create a new authority.
+        body (NewHostedAuthority): The body of a request to create a new authority.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -97,7 +104,7 @@ def sync_detailed(
     """
 
     kwargs = _get_kwargs(
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -112,7 +119,7 @@ def sync_detailed(
 def sync(
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: NewHostedAuthority,
+    body: NewHostedAuthority,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, Authority]]:
@@ -123,7 +130,7 @@ def sync(
     Args:
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (NewHostedAuthority): The body of a request to create a new authority.
+        body (NewHostedAuthority): The body of a request to create a new authority.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -135,7 +142,7 @@ def sync(
 
     return sync_detailed(
         client=client,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     ).parsed
@@ -144,7 +151,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: NewHostedAuthority,
+    body: NewHostedAuthority,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, Authority]]:
@@ -155,7 +162,7 @@ async def asyncio_detailed(
     Args:
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (NewHostedAuthority): The body of a request to create a new authority.
+        body (NewHostedAuthority): The body of a request to create a new authority.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -166,7 +173,7 @@ async def asyncio_detailed(
     """
 
     kwargs = _get_kwargs(
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -179,7 +186,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: NewHostedAuthority,
+    body: NewHostedAuthority,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, Authority]]:
@@ -190,7 +197,7 @@ async def asyncio(
     Args:
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (NewHostedAuthority): The body of a request to create a new authority.
+        body (NewHostedAuthority): The body of a request to create a new authority.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -203,7 +210,7 @@ async def asyncio(
     return (
         await asyncio_detailed(
             client=client,
-            json_body=json_body,
+            body=body,
             x_request_id=x_request_id,
             accept=accept,
         )

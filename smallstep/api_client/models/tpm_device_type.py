@@ -33,8 +33,11 @@ class TPMDeviceType:
 
     def to_dict(self) -> Dict[str, Any]:
         attestor_intermediates = self.attestor_intermediates
+
         attestor_roots = self.attestor_roots
+
         force_cn = self.force_cn
+
         require_eab = self.require_eab
 
         field_dict: Dict[str, Any] = {}

@@ -27,8 +27,11 @@ class NewSSHGrant:
 
     def to_dict(self) -> Dict[str, Any]:
         group_id = self.group_id
+
         name = self.name
+
         sudo = self.sudo
+
         value = self.value
 
         field_dict: Dict[str, Any] = {}

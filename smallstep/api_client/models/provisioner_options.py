@@ -44,7 +44,6 @@ class ProvisionerOptions:
             webhooks = []
             for webhooks_item_data in self.webhooks:
                 webhooks_item = webhooks_item_data.to_dict()
-
                 webhooks.append(webhooks_item)
 
         x509: Union[Unset, Dict[str, Any]] = UNSET

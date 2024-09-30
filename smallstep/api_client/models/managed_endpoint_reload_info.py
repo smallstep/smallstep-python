@@ -21,7 +21,7 @@ class ManagedEndpointReloadInfo:
             process is able to detect and reload new certificates automatically. `CUSTOM` means a custom command must be run
             to trigger the workload to reload the certificates. `SIGNAL` will configure the agent to send a signal to the
             process in `pidFile`. `DBUS` will use the systemd system bus to issue a `try-reload-or-restart` job for unit
-            specified by `unitName`.
+            specified by `unitName`. `PLATFORM` uses a method specific to the operating system.
         pid_file (Union[Unset, str]): File that holds the pid of the process to signal. Required when method is SIGNAL.
         signal (Union[Unset, int]): The signal to send to a process when a certificate should be reloaded. Required when
             method is SIGNAL.
@@ -39,7 +39,9 @@ class ManagedEndpointReloadInfo:
         method = self.method.value
 
         pid_file = self.pid_file
+
         signal = self.signal
+
         unit_name = self.unit_name
 
         field_dict: Dict[str, Any] = {}

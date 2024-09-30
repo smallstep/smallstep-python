@@ -16,21 +16,20 @@ def _get_kwargs(
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
-    headers = {}
+    headers: Dict[str, Any] = {}
     if not isinstance(x_request_id, Unset):
         headers["X-Request-Id"] = x_request_id
 
     if not isinstance(accept, Unset):
         headers["Accept"] = accept
 
-    return {
+    _kwargs: Dict[str, Any] = {
         "method": "get",
-        "url": "/device-collections/{collectionSlug}/workloads/{workloadSlug}".format(
-            collectionSlug=collection_slug,
-            workloadSlug=workload_slug,
-        ),
-        "headers": headers,
+        "url": f"/device-collections/{collection_slug}/workloads/{workload_slug}",
     }
+
+    _kwargs["headers"] = headers
+    return _kwargs
 
 
 def _parse_response(

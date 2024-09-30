@@ -41,20 +41,24 @@ class SSHHost:
 
     def to_dict(self) -> Dict[str, Any]:
         active = self.active
+
         bastion = self.bastion
+
         bastion_hostname = self.bastion_hostname
+
         created_at: Union[Unset, str] = UNSET
         if not isinstance(self.created_at, Unset):
             created_at = self.created_at.isoformat()
 
         hostname = self.hostname
+
         id = self.id
+
         tags: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.tags, Unset):
             tags = []
             for tags_item_data in self.tags:
                 tags_item = tags_item_data.to_dict()
-
                 tags.append(tags_item)
 
         updated_at: Union[Unset, str] = UNSET

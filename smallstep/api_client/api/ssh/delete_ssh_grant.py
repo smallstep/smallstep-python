@@ -14,20 +14,20 @@ def _get_kwargs(
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
-    headers = {}
+    headers: Dict[str, Any] = {}
     if not isinstance(x_request_id, Unset):
         headers["X-Request-Id"] = x_request_id
 
     if not isinstance(accept, Unset):
         headers["Accept"] = accept
 
-    return {
+    _kwargs: Dict[str, Any] = {
         "method": "delete",
-        "url": "/grants/{grantID}".format(
-            grantID=grant_id,
-        ),
-        "headers": headers,
+        "url": f"/grants/{grant_id}",
     }
+
+    _kwargs["headers"] = headers
+    return _kwargs
 
 
 def _parse_response(*, client: Union[AuthenticatedClient, Client], response: httpx.Response) -> Optional[Any]:

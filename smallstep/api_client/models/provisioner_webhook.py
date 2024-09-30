@@ -75,6 +75,7 @@ class ProvisionerWebhook:
         kind = self.kind.value
 
         name = self.name
+
         server_type = self.server_type.value
 
         basic_auth: Union[Unset, Dict[str, Any]] = UNSET
@@ -82,10 +83,15 @@ class ProvisionerWebhook:
             basic_auth = self.basic_auth.to_dict()
 
         bearer_token = self.bearer_token
+
         collection_slug = self.collection_slug
+
         disable_tls_client_auth = self.disable_tls_client_auth
+
         id = self.id
+
         secret = self.secret
+
         url = self.url
 
         field_dict: Dict[str, Any] = {}

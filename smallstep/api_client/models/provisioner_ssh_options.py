@@ -29,6 +29,7 @@ class ProvisionerSSHOptions:
 
     def to_dict(self) -> Dict[str, Any]:
         template = self.template
+
         template_data = self.template_data
 
         field_dict: Dict[str, Any] = {}

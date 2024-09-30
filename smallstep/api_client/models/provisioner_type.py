@@ -9,6 +9,7 @@ class ProvisionerType(str, Enum):
     GCP = "GCP"
     JWK = "JWK"
     OIDC = "OIDC"
+    SCEP = "SCEP"
     X5C = "X5C"
 
     def __str__(self) -> str:

@@ -26,7 +26,9 @@ class SSHHostTag:
 
     def to_dict(self) -> Dict[str, Any]:
         id = self.id
+
         name = self.name
+
         value = self.value
 
         field_dict: Dict[str, Any] = {}

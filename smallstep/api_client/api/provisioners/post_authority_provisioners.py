@@ -12,27 +12,29 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     authority_id: str,
     *,
-    json_body: Provisioner,
+    body: Provisioner,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
-    headers = {}
+    headers: Dict[str, Any] = {}
     if not isinstance(x_request_id, Unset):
         headers["X-Request-Id"] = x_request_id
 
     if not isinstance(accept, Unset):
         headers["Accept"] = accept
 
-    json_json_body = json_body.to_dict()
-
-    return {
+    _kwargs: Dict[str, Any] = {
         "method": "post",
-        "url": "/authorities/{authorityID}/provisioners".format(
-            authorityID=authority_id,
-        ),
-        "json": json_json_body,
-        "headers": headers,
+        "url": f"/authorities/{authority_id}/provisioners",
     }
+
+    _body = body.to_dict()
+
+    _kwargs["json"] = _body
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
+    return _kwargs
 
 
 def _parse_response(
@@ -54,6 +56,9 @@ def _parse_response(
     if response.status_code == HTTPStatus.CONFLICT:
         response_409 = cast(Any, None)
         return response_409
+    if response.status_code == HTTPStatus.UNPROCESSABLE_ENTITY:
+        response_422 = cast(Any, None)
+        return response_422
     if response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR:
         response_500 = cast(Any, None)
         return response_500
@@ -78,7 +83,7 @@ def sync_detailed(
     authority_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: Provisioner,
+    body: Provisioner,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, Provisioner]]:
@@ -90,8 +95,8 @@ def sync_detailed(
         authority_id (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (Provisioner): [Provisioners](https://smallstep.com/docs/step-ca/provisioners/)
-            are methods of using the CA to get certificates with different modes of authorization.
+        body (Provisioner): [Provisioners](https://smallstep.com/docs/step-ca/provisioners/) are
+            methods of using the CA to get certificates with different modes of authorization.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -103,7 +108,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         authority_id=authority_id,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -119,7 +124,7 @@ def sync(
     authority_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: Provisioner,
+    body: Provisioner,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, Provisioner]]:
@@ -131,8 +136,8 @@ def sync(
         authority_id (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (Provisioner): [Provisioners](https://smallstep.com/docs/step-ca/provisioners/)
-            are methods of using the CA to get certificates with different modes of authorization.
+        body (Provisioner): [Provisioners](https://smallstep.com/docs/step-ca/provisioners/) are
+            methods of using the CA to get certificates with different modes of authorization.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -145,7 +150,7 @@ def sync(
     return sync_detailed(
         authority_id=authority_id,
         client=client,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     ).parsed
@@ -155,7 +160,7 @@ async def asyncio_detailed(
     authority_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: Provisioner,
+    body: Provisioner,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Response[Union[Any, Provisioner]]:
@@ -167,8 +172,8 @@ async def asyncio_detailed(
         authority_id (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (Provisioner): [Provisioners](https://smallstep.com/docs/step-ca/provisioners/)
-            are methods of using the CA to get certificates with different modes of authorization.
+        body (Provisioner): [Provisioners](https://smallstep.com/docs/step-ca/provisioners/) are
+            methods of using the CA to get certificates with different modes of authorization.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -180,7 +185,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         authority_id=authority_id,
-        json_body=json_body,
+        body=body,
         x_request_id=x_request_id,
         accept=accept,
     )
@@ -194,7 +199,7 @@ async def asyncio(
     authority_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    json_body: Provisioner,
+    body: Provisioner,
     x_request_id: Union[Unset, str] = UNSET,
     accept: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Any, Provisioner]]:
@@ -206,8 +211,8 @@ async def asyncio(
         authority_id (str):
         x_request_id (Union[Unset, str]):
         accept (Union[Unset, str]):
-        json_body (Provisioner): [Provisioners](https://smallstep.com/docs/step-ca/provisioners/)
-            are methods of using the CA to get certificates with different modes of authorization.
+        body (Provisioner): [Provisioners](https://smallstep.com/docs/step-ca/provisioners/) are
+            methods of using the CA to get certificates with different modes of authorization.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -221,7 +226,7 @@ async def asyncio(
         await asyncio_detailed(
             authority_id=authority_id,
             client=client,
-            json_body=json_body,
+            body=body,
             x_request_id=x_request_id,
             accept=accept,
         )
