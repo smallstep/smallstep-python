@@ -391,13 +391,13 @@ setuptools = "*"
 
 [[package]]
 name = "openapi-python-client"
-version = "0.21.6"
+version = "0.22.0"
 description = "Generate modern Python clients from OpenAPI"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 files = [
-    {file = "openapi_python_client-0.21.6-py3-none-any.whl", hash = "sha256:ed7d134169ec66646681f514706e3aa4ecc461db17359c02fa13eb850d12c893"},
-    {file = "openapi_python_client-0.21.6.tar.gz", hash = "sha256:019cb0191b48eb51206af98b2f65c516067df908a10b5d4fe6de333c9ebcb93d"},
+    {file = "openapi_python_client-0.22.0-py3-none-any.whl", hash = "sha256:f2eb66b207bfcb8ef195ebe90bef90a8c0ec40a49ee7ad5cc71c0c45ea736ead"},
+    {file = "openapi_python_client-0.22.0.tar.gz", hash = "sha256:b0ef2398c6b7f754f5a177ed9db77dfc244562cd1c62e6abb4cb10571e417f76"},
 ]
 
 [package.dependencies]
@@ -408,9 +408,9 @@ jinja2 = ">=3.0.0,<4.0.0"
 pydantic = ">=2.1.1,<3.0.0"
 python-dateutil = ">=2.8.1,<3.0.0"
 ruamel-yaml = ">=0.18.6,<0.19.0"
-ruff = ">=0.2,<0.8"
+ruff = ">=0.2,<0.9"
 shellingham = ">=1.3.2,<2.0.0"
-typer = ">0.6,<0.13"
+typer = ">0.6,<0.14"
 typing-extensions = ">=4.8.0,<5.0.0"
 
 [[package]]
@@ -952,4 +952,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "2cc41fe41b7c3bd6a3d7a12816bb561f158d53121d7acd2eb01d15ef71574df4"
+content-hash = "86e3e4d2fdea13fb038ad784f0f10ae94d0fe7b6a9dbe2afeec95505d9332c74"
