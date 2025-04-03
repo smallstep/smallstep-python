@@ -9,7 +9,7 @@ packages = [{include = "smallstep"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-openapi-python-client = "0.21.6"
+openapi-python-client = "0.24.3"
 pydantic-settings = "2.8.1"
 pyhumps = "^3.8.0"
 
@@ -18,7 +18,7 @@ black = ">=23.7,<25.0"
 pre-commit = ">=3.3.3,<5.0.0"
 ruff = ">=0.0.286,<0.7.5"
 pytest = ">=7.4,<9.0"
-openapi-python-client = ">=0.15.2,<0.22.0"
+openapi-python-client = ">=0.15.2,<0.25.0"
 
 [tool.black]
 line-length = 119
