@@ -145,9 +145,9 @@ mypy-extensions==1.0.0 ; python_version >= "3.9" and python_version < "4.0" \
 nodeenv==1.8.0 ; python_version >= "3.9" and python_version < "4.0" \
     --hash=sha256:d51e0c37e64fbf47d017feac3145cdbb58836d7eee8c6f6d3b6880c5456227d2 \
     --hash=sha256:df865724bb3c3adc86b3876fa209771517b0cfe596beff01a92700e0e8be4cec
-openapi-python-client==0.15.2 ; python_version >= "3.9" and python_version < "4.0" \
-    --hash=sha256:240ff6e571eecd81758410cb743c24b6cabc4d30a3fd79cd886feeb8960610c5 \
-    --hash=sha256:a0ff88cd142f907277c333fa4e3bb9461ebfd8e58bad1bbccdd8f14dc3c311e7
+openapi-python-client==0.24.3 ; python_version >= "3.9" and python_version < "4.0" \
+    --hash=sha256:1a5580c05a3cb4e0e58101b4d05ce1680f9c51d41a68ce220611e848b80c2ba9 \
+    --hash=sha256:472d6f4a55dea35e471b08879fc72c4823c1b693cb11ea09eaae742aa1ec170d
 packaging==23.2 ; python_version >= "3.9" and python_version < "4.0" \
     --hash=sha256:048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5 \
     --hash=sha256:8c491190033a9af7e1d931d0b5dacc2ef47509b34dd0de67ed209b5203fc88c7
